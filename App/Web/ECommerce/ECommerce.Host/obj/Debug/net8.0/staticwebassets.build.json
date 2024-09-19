@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "feNjCuOtCffIuu1pqGVKw1nDPaSDRCdPycdzmTqJqmU=",
+  "Source": "ECommerce.Host",
+  "BasePath": "_content/ECommerce.Host",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
