@@ -9,6 +9,9 @@ const EmployeeList = (props: Props) => {
     const {list} = props;
     return (
     <div>
+        <article>
+            <h3 className="list-header">Employee List</h3>
+        </article>
         <table>
             <tr>
                 <th>Name</th>

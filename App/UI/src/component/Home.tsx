@@ -15,6 +15,10 @@ const Home = () => {
         setShownPage(PageEnum.list);
     }
 
+    const addEmployee = (data : IEmployee) => {
+        setEmployeeList([...employeeList, data]);
+    }
+
     return <>
         <article className="article-header">
             <header>
@@ -25,12 +29,19 @@ const Home = () => {
         <section className="section-content">
             {shownPage === PageEnum.list && ( 
             <>
-              <input type="button" value="Add Employee" onClick={onAddEmployeeClickHandler}/>
+              <input 
+              type="button"
+               value="Add Employee"
+               onClick={onAddEmployeeClickHandler}
+               className="add-employee-btn"/>
               <EmployeeList list={employeeList}/>
             </>
             )}
 
-            {shownPage === PageEnum.add && <AddEmployee onBackButtonClickHandler={showListPage}/>}
+            {shownPage === PageEnum.add && <AddEmployee 
+            onBackButtonClickHandler={showListPage}
+            onSubmitClickHandler={addEmployee}
+            />}
           
         </section>
     </>
