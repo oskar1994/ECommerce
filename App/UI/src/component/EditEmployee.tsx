@@ -1,17 +1,20 @@
 import { useState } from "react";
-import "./EmployeeForm.style.css";
 import { IEmployee } from "./Employee.type";
+import "./EmployeeForm.style.css";
 
 type Props = {
+  data: IEmployee;
   onBackButtonClickHandler: () => void;
-  onSubmitClickHandler: (data: IEmployee) => void;
+  onUpdateClickHandler: (data: IEmployee) => void;
 };
 
-const AddEmployee = (props: Props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const { onBackButtonClickHandler, onSubmitClickHandler } = props;
+const EditEmployee = (props: Props) => {
+  const { data, onBackButtonClickHandler, onUpdateClickHandler } = props;
+
+  const [firstName, setFirstName] = useState(data.firstName);
+  const [lastName, setLastName] = useState(data.lastName);
+  const [email, setEmail] = useState(data.email);
+
   const onFirstNameChangeHandler = (e: any) => {
     setFirstName(e.target.value);
   };
@@ -21,24 +24,22 @@ const AddEmployee = (props: Props) => {
   const onEmailChangeHandler = (e: any) => {
     setEmail(e.target.value);
   };
-
   const onSubmitButtonClickHandler = (e: any) => {
     e.preventDefault();
-    const data: IEmployee = {
-      id: new Date().toJSON().toString(),
+    const dataToUpdate: IEmployee = {
+      id: data.id,
       firstName: firstName,
       lastName: lastName,
       email: email,
     };
 
-    onSubmitClickHandler(data);
+    onUpdateClickHandler(dataToUpdate);
     onBackButtonClickHandler();
   };
-
   return (
     <div className="form-container">
       <div>
-        <h3>Add Employee Form</h3>
+        <h3>Edit Employee Form</h3>
       </div>
       <form onSubmit={onSubmitButtonClickHandler}>
         <div>
@@ -67,11 +68,11 @@ const AddEmployee = (props: Props) => {
             value="Back"
             onClick={onBackButtonClickHandler}
           />
-          <input type="submit" value="Add Employee" />
+          <input type="submit" value="Update Employee" />
         </div>
       </form>
     </div>
   );
 };
 
-export default AddEmployee;
+export default EditEmployee;
