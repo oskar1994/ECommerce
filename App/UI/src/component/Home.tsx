@@ -19,6 +19,17 @@ const Home = () => {
         setEmployeeList([...employeeList, data]);
     }
 
+    const deleteEmployee = (data : IEmployee) => {
+        // To Index from Array i,e employee list
+        // Splice that
+        // Update new record
+        const indexToDelete = employeeList.indexOf(data);
+        const tempList = [...employeeList];
+
+        tempList.splice(indexToDelete, 1);
+        setEmployeeList(tempList);
+    }
+
     return <>
         <article className="article-header">
             <header>
@@ -34,7 +45,7 @@ const Home = () => {
                value="Add Employee"
                onClick={onAddEmployeeClickHandler}
                className="add-employee-btn"/>
-              <EmployeeList list={employeeList}/>
+              <EmployeeList list={employeeList} onDeleteClickHandler={deleteEmployee}/>
             </>
             )}
 
